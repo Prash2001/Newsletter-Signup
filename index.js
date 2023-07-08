@@ -1,6 +1,7 @@
 const express = require("express");
 const https = require("https");
 const bodyParser = require("body-parser");
+require("dotenv").config();
 const { subscribe } = require("diagnostics_channel");
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
@@ -31,7 +32,7 @@ app.post("/",function(req, res){
   const url = "https://us10.api.mailchimp.com/3.0/lists/f08b068989";
   const options ={
     method : "POST",
-    auth:"prash:b4e8877fc1f78e0042b52c57d7b86502-us10"
+    auth:"prash:"+process.env.SECRET_KEY
   }
   const request = https.request(url, options, function(response){
     
